@@ -5,6 +5,7 @@ public class BingoSquare extends Rectangle {
 	private String value;
 	private boolean status; //true if the value is called by the user
 	private boolean isClicked; //true if the user clicked the square
+	private boolean isWinner; //this square is part of the winning sequence
 	
 	public BingoSquare(int x1, int y1, int width, int height) {
         super(x1, y1, width, height);
@@ -34,5 +35,13 @@ public class BingoSquare extends Rectangle {
 
     public boolean getIsClicked() {
         return isClicked;
+    }
+    
+    public void setIsWinner(boolean newIsWinner) {
+        isWinner = newIsWinner;
+    }
+
+    public boolean getIsWinner() {
+        return isWinner;
     }
 }
