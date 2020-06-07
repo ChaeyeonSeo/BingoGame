@@ -23,6 +23,14 @@ public class BingoBoardHuman extends BingoBoard{
         initializeBoard();
     }
 
+    
+    /**
+     * Creates the BingoSquare objects onto the grid and assigns them a value 
+     */
+    public void initializeBoard() {
+    	
+    }
+    
     /**
      * Highlights the square if it is clicked
      */

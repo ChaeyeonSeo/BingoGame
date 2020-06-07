@@ -27,8 +27,8 @@ public class BingoGUI extends JFrame{
 	private Container boxLayout;
 	
 	private BingoString BingoString;
-	private BingoGrid dummyGrid;
-	private BingoGridHuman userGrid;
+	private BingoBoard dummyGrid;
+	private BingoBoardHuman userGrid;
 	//private BingoGridComputer computer Grid;
 	
 	private MouseListener mouseListener;
@@ -91,7 +91,7 @@ public class BingoGUI extends JFrame{
         Timer t=new Timer(DELAY,timer);
         t.start();
         
-        userGrid = new BingoGridHuman();
+        userGrid = new BingoBoardHuman();
         //computerGrid = new BingoGridComputer();
         BingoString = new BingoString();
 

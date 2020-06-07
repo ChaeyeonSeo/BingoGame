@@ -18,17 +18,16 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
-public class BingoString extends BingoGridHuman{
+public class BingoString{
 	 
 	 private static final int N = 25;
-	 
-	 //for(int i=0;i<N;i++) {
-		 
-	 //}
+	 public static ArrayList <String> words = new ArrayList<String>();
+
 	 
 	 public BingoString() {
-		 this.display();
+		 super();
 	 }
+	 
 	 private void display() {
          JFrame f = new JFrame("GridTest");
          f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -53,7 +52,6 @@ public class BingoString extends BingoGridHuman{
          panel.add(textfield,BorderLayout.CENTER);
          JButton button=new JButton("OK");
          button.addActionListener(new ActionListener(){
-        	 
         	 public void actionPerformed(ActionEvent e) {
         		 words.add(textfield.getText());
         	 }
@@ -61,5 +59,19 @@ public class BingoString extends BingoGridHuman{
          panel.add(button, BorderLayout.SOUTH);
          return panel;
      }
+	 
+	 /**
+	     * Checks if <code>value</code> already exists in the ArrayList
+	     * @param value the value to check
+	     * @return  true if a duplicate is found
+	     */
+	    public boolean isFound(String value)
+	    {
+	        for (String x : words) {
+	            if (value == (String) x)
+	                return true;
+	        }
+	        return false;
+	    }	 
 
 }

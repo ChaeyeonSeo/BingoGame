@@ -47,8 +47,9 @@ public class BingoBoard {
     /**
      * Creates the BingoSquare objects onto the grid and assigns them a value 
      */
-    public void initializeBoard() {
 
+    public void initializeBoard() {
+    	
     }
 
     /**
