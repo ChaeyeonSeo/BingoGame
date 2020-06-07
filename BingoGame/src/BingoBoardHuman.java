@@ -12,7 +12,9 @@ import java.awt.Color;
  * @version 02/27/12
  */
 public class BingoBoardHuman extends BingoBoard{
-    /**
+    BingoString bingoString;
+	
+	/**
      * Constructs BingoGridHuman
      */
     public BingoBoardHuman() {
@@ -28,7 +30,17 @@ public class BingoBoardHuman extends BingoBoard{
      * Creates the BingoSquare objects onto the grid and assigns them a value 
      */
     public void initializeBoard() {
+    	bingoString = new BingoString();
+    	bingoBoardWords.addAll(bingoString.words);
     	
+    	int i=0;
+    	for(int row = 0; row < board.length; row++) {
+    		for(int col = 0; col < board[0].length; col++) {
+    			board[row][col] = new BingoSquare(col * SQUARE_SIZE + indentX, row * SQUARE_SIZE + indentY, SQUARE_SIZE, SQUARE_SIZE);
+                board[row][col].setValue(bingoBoardWords.get(i));
+                i++;
+    		}
+    	}
     }
     
     /**
