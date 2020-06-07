@@ -9,7 +9,7 @@ import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
+import java.util.Scanner;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -22,6 +22,12 @@ public class BingoString extends BingoGridHuman{
 	 
 	 private static final int N = 25;
 	 
+	 for(int i=0;i<N;i++) {
+		 
+	 }
+	 /*public BingoString() {
+		 this.display();
+	 }
 	 private void display() {
          JFrame f = new JFrame("GridTest");
          f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -40,7 +46,7 @@ public class BingoString extends BingoGridHuman{
          panel.setBorder(BorderFactory.createLineBorder(Color.black));
          panel.add(new JLabel(String.valueOf(i)));
          panel.add(new JLabel());
-         JLabel label=new JLabel("ют╥б");
+         JLabel label=new JLabel(" ");
          panel.add(label);
          JTextField textfield = new JTextField();
          panel.add(textfield,BorderLayout.CENTER);
@@ -53,11 +59,6 @@ public class BingoString extends BingoGridHuman{
          });
          panel.add(button, BorderLayout.SOUTH);
          return panel;
-     }
-	 
-	 
-	 public static void main(String[] args) {
-         EventQueue.invokeLater(new BingoString()::display);
-     }
+     }*/
 
 }
