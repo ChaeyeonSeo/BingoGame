@@ -22,10 +22,11 @@ public class BingoString extends BingoGridHuman{
 	 
 	 private static final int N = 25;
 	 
-	 for(int i=0;i<N;i++) {
+	 //for(int i=0;i<N;i++) {
 		 
-	 }
-	 /*public BingoString() {
+	 //}
+	 
+	 public BingoString() {
 		 this.display();
 	 }
 	 private void display() {
@@ -59,6 +60,6 @@ public class BingoString extends BingoGridHuman{
          });
          panel.add(button, BorderLayout.SOUTH);
          return panel;
-     }*/
+     }
 
 }
