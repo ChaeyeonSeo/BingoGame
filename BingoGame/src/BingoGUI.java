@@ -26,9 +26,9 @@ public class BingoGUI extends JFrame{
 	private Container layout;
 	private Container boxLayout;
 	
-	//private BingoNumners bingoNumvers;
-	//private BingoGrid dummyGrid;
-	//private BingoGridHuman humanGrid;
+	private BingoString BingoString;
+	private BingoGrid dummyGrid;
+	private BingoGridHuman userGrid;
 	//private BingoGridComputer computer Grid;
 	
 	private MouseListener mouseListener;
@@ -91,21 +91,21 @@ public class BingoGUI extends JFrame{
         Timer t=new Timer(DELAY,timer);
         t.start();
         
-        /*humanGrid = new BingoGridHuman();
-        computerGrid = new BingoGridComputer();
-        bingoNumbers = new BingoNumbers();
+        userGrid = new BingoGridHuman();
+        //computerGrid = new BingoGridComputer();
+        BingoString = new BingoString();
 
-        add(humanGrid); 
+        add(userGrid); 
         setVisible(true);
 
-        add(computerGrid);
-        setVisible(true);
+        //add(computerGrid);
+        //setVisible(true);
 
-        add(bingoNumbers);
-        setVisible(true);
+        //add(bingoNumbers);
+        //setVisible(true);
 
-        humanGrid.addMouseListener(mouseListener);
-        setVisible(true);*/
+        //userGrid.addMouseListener(mouseListener);
+        //setVisible(true);*/
         
 	}
 	
