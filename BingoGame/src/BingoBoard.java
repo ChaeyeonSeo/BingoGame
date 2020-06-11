@@ -5,71 +5,60 @@ import java.awt.Font;
 import java.util.ArrayList;
 import java.awt.Color;
 
-public class BingoBoard {
+public class BingoBoard extends JComponent{
 	protected BingoSquare[][] board;
-    protected ArrayList<String> bingoBoardWords;
+    protected ArrayList<Integer> bingoBoardWords;
+    public static final String[] BINGO = {"B", " I", "N", "G", "O"};
     protected final int SQUARE_SIZE = 60;
     protected final int LENGTH = 5;
     protected final int WIDTH = 5;
     public int indentX;
     public int indentY;
     protected String winnerMessage;
-    protected boolean isWinner;
-
-    /**
-     * BingoGrid constructor.
-     */
+    
     public BingoBoard() {
         board = new BingoSquare[WIDTH][LENGTH];
-        bingoBoardWords = new ArrayList<String>();
+        bingoBoardWords = new ArrayList<Integer>();
         winnerMessage = "";
-        isWinner = false;
     }
     
-    
-    /**
-     * Checks if the value created is already in the array
-     * @param value the number to check
-     * @return true if the value is in the array
-     */
-    public boolean isFound(String value, int r , int c)
+    public boolean isFound(int value, int r , int c)
     {
         for (int row = 0; row < r; row++) {
             for (int col = 0; col <= c; col++) {
-                if (value.equals(board[row][col].getValue())) {
+                if (value==board[row][col].getValue()) {
                     return true;
                 }
             }
         }
         return false;
     }
-
-    /**
-     * Creates the BingoSquare objects onto the grid and assigns them a value 
-     */
-
+    
     public void initializeBoard() {
-    	
+        for (int row = 0; row < board.length; row++) {
+            for (int col = 0; col < board[0].length; col++) {
+                board[row][col] = new BingoSquare(col * SQUARE_SIZE + indentX, row * SQUARE_SIZE + indentY, SQUARE_SIZE, SQUARE_SIZE);
+                int value = board[row][col].createNum(col + 1);
+                while (isFound(value,row,col))
+                    value = board[row][col].createNum(col + 1);
+            }
+        }
     }
-
-    /**
-     * Checks if the grid has won according to the rules of Bingo
-     * return true if grid has won
-     */
+    
     public boolean checkWin() {
         int winningNumber = 5;
         int count;
-        int bingoCount = 0;
 
         //checks the rows
         for (int row = 0; row < board.length; row++) {
             count = 0;
             for (int col = 0; col < board[0].length; col++) {
                 if (board[row][col].getStatus()) {
+                    board[row][col].setIsWinner(true);
                     count++;                
                 }
                 if (count == winningNumber) {
-                    bingoCount++;             
+                    return true;             
                 }
             }
             this.removeIsWinnerMark();
@@ -80,11 +69,11 @@ public class BingoBoard {
             count = 0;
             for (int row = 0; row < board.length; row++) {
                 if (board[row][col].getStatus()) {
-                	board[row][col].setIsWinner(true);
+                    board[row][col].setIsWinner(true);
                     count++;                
                 }
                 if (count == winningNumber) {
-                	bingoCount++;            
+                    return true;             
                 }
             }
             this.removeIsWinnerMark();
@@ -99,7 +88,7 @@ public class BingoBoard {
                 count++;            
             }
             if (count == winningNumber) {
-            	bingoCount++;
+                return true;
             }
         }        
         this.removeIsWinnerMark();
@@ -113,20 +102,17 @@ public class BingoBoard {
                 count++;
             }
             if (count == winningNumber) {
-            	bingoCount++;
+                return true;
                 }
         }
         this.removeIsWinnerMark();
-        if(bingoCount == winningNumber) {
-        	return true;
-        }
-        else return false;
+        return false;
     }
     
     public void removeIsWinnerMark() {
         for (int row = 0; row < board.length; row++) {
             for (int col = 0; col < board[0].length; col++) {
-            	board[row][col].setIsWinner(false);
+                board[row][col].setIsWinner(false);
             }
         }
     }
@@ -134,4 +120,5 @@ public class BingoBoard {
     public void setWinnerMessage(String newMsg) {
         winnerMessage = newMsg;
     }
+   
 }
