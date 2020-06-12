@@ -27,7 +27,7 @@ public class ClientFrame extends JFrame{
 	private Socket socket;
 	private BufferedWriter bw; 
 	
-	public ArrayList <Integer> numbers = new ArrayList<Integer>(); 
+	public static ArrayList <Integer> numbers = new ArrayList<Integer>(); 
 	
 	public ClientFrame() { 
 		textarea = new JTextArea(); 
@@ -39,7 +39,9 @@ public class ClientFrame extends JFrame{
 		//As needed 즉 필요에의해서 내용이 많아지면 스크롤 바가 생긴다 
 		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); 
 		//가로 스크롤은 안만든다 
-		setSize(500, 700); 
+		setSize(400, 400); 
+		setLocation(730, 300);
+		setAlwaysOnTop(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		
 		setTitle("chatting"); 
@@ -145,9 +147,11 @@ public class ClientFrame extends JFrame{
 		} 
 	} 
 	public static void main(String[] args) { 
-		try { 
+		try {			
+			Runplease run = new Runplease();
+			
 			//서버 아이피 , 포트번호 -> 소켓 생성 -> 연결 요청
-			Socket socket = new Socket("localhost", 5000); 
+			Socket socket = new Socket("172.16.101.5", 5000); 
 			//소켓 객체 생성
 			ClientFrame cf = new ClientFrame(); 
 			cf.setSocket(socket);
@@ -155,9 +159,10 @@ public class ClientFrame extends JFrame{
 			TcpClientReceiveThread th1 = cf.new TcpClientReceiveThread(socket); 
 			//TcpClientReceiveThread가 내부 클래스로 선언되어 있기 때문에
 			//cf로 접근해서 socket을 전달한다
-			new Thread(th1).start(); 
-			
-		} catch (Exception e) { e.printStackTrace(); 
+			new Thread(th1).start();
+				
+		} catch (Exception e) { 
+			e.printStackTrace(); 
 		} 
 	} 
 }
