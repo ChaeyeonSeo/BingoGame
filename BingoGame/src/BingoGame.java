@@ -42,6 +42,7 @@ public class BingoGame extends JFrame{
     
     public BingoGame() {
        setSize(WIDTH, LENGTH);
+       setLocationRelativeTo(null);
          
          panel=new JPanel();
          
@@ -129,6 +130,14 @@ public class BingoGame extends JFrame{
     }
        
     class ButtonListener implements ActionListener{
+        public void TellWinner() {
+        	if(winner) {
+        		JOptionPane.showMessageDialog(null, "You're a winner!!!");
+        	}
+        	else {
+        		JOptionPane.showMessageDialog(null, "You're a loser,,,");
+        	} 	
+        }
        public void actionPerformed(ActionEvent event) {
           Object source=event.getSource();
           if(source==reset) { //resets the board and the bingo number callings
@@ -139,8 +148,9 @@ public class BingoGame extends JFrame{
           else if(source==bingo) { //checks if the human grid has won
              if(!winner) {
                 if(userGrid.checkWin()) {
-                   userGrid.setWinnerMessage(" WINNER: You!");
+                   userGrid.setWinnerMessage(" WINNER: You !");
                    winner=true;
+                   TellWinner();
                 }
                 else {
                    userGrid.setWinnerMessage("Sorry, you haven't gotten bingo.");
@@ -152,8 +162,7 @@ public class BingoGame extends JFrame{
              if(!winner) {
                // bingoNumbers.generateNumber();
                 userGrid.setWinnerMessage("");
-                //userGrid.isCalled();
-                
+                //userGrid.isCalled();                
              }
           }
           else if(source==start) {//starts the game
@@ -162,7 +171,6 @@ public class BingoGame extends JFrame{
           else if(source==stop) {
              startGame=false;
           }
-
           
           userGrid.repaint();
           //bingoNumbers.repaint();
@@ -170,8 +178,4 @@ public class BingoGame extends JFrame{
           
        }
     }
-    
-
-    
-
 }
