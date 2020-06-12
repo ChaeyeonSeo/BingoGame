@@ -11,7 +11,7 @@ Bingo Game
 
 ****
 # 3. Purpose of the project
-- Usage of GUI, Socket, Multithreading
+- Usage of GUI, Socket, and Multithreading
 
 ****
 # 4. Date
