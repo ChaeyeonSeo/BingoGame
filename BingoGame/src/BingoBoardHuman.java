@@ -98,7 +98,7 @@ public class BingoBoardHuman extends BingoBoard{
 	        
 	        ImageIcon icon=new ImageIcon("src/images.jpg");
             Image img=icon.getImage();
-            g2.drawImage(img,300,10,this);
+            g2.drawImage(img,50,5,this);
 
 	        //prints message if grid has won
 	        g2.setColor(Color.RED);

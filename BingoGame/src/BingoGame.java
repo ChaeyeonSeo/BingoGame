@@ -1,5 +1,6 @@
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -41,7 +42,10 @@ public class BingoGame extends JFrame{
     private boolean winner=false;
     
     public BingoGame() {
+       
        setSize(WIDTH, LENGTH);
+       setLocationRelativeTo(null);
+
          
          panel=new JPanel();
          
@@ -120,6 +124,16 @@ public class BingoGame extends JFrame{
     }
        
     class ButtonListener implements ActionListener{
+    	public void TellWinner() {
+            if(winner) {
+               JOptionPane.showMessageDialog(null, "You're a winner!!!");
+            }
+            else {
+               JOptionPane.showMessageDialog(null, "You're a loser,,,");
+            }    
+         }
+
+    
        public void actionPerformed(ActionEvent event) {
           Object source=event.getSource();
           if(source==reset) { //resets the board and the bingo number callings
