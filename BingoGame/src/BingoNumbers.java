@@ -37,7 +37,7 @@ public class BingoNumbers extends JComponent{
      * Displays the numbers
      * @param g the graphics object
      */
-    public void paintComponent(Graphics g) {
+    /*public void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
 
         //font anti-aliasing
@@ -67,7 +67,7 @@ public class BingoNumbers extends JComponent{
                 g2.drawString("O-" + number, xCoord, yCoord);
             }
         }
-    }
+    }*/
 
 
 }
