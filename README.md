@@ -6,7 +6,7 @@ Bingo Game
 
 ****
 # 2. How to execute
-- 
+- The bingo board is filled with numbers at random, and you can play the game with a friend by calling the numbers by chatting.
 
 
 ****
