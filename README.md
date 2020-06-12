@@ -1,19 +1,24 @@
 Bingo Game
 ======================
 
-# 1. How to use
-- Run main.java
+# 1. How to compile
+- Run ClientsFrame.java
 
 ****
-# 2. Purpose of the project
+# 2. How to execute
+- 
+
+
+****
+# 3. Purpose of the project
 - Usage of GUI, Socket, Multithreading
 
 ****
-# 3. Date
+# 4. Date
 - June, 2020
 
 ****
-# 4. Authors
+# 5. Authors
 - Seo Chaeyeon, Park Jiye
 
 *****
