@@ -95,4 +95,6 @@ public class BingoBoardHuman extends BingoBoard{
 	        g2.setColor(Color.RED);
 	        g2.drawString(winnerMessage, 50, 190);
 	    }
+   
+    
 }
