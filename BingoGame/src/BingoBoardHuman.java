@@ -7,8 +7,7 @@ import java.util.ArrayList;
 import java.awt.Color;
 
 public class BingoBoardHuman extends BingoBoard{
-	BingoString bingoString;
-	
+
 	public BingoBoardHuman() {
         super();        
 
@@ -21,8 +20,8 @@ public class BingoBoardHuman extends BingoBoard{
 	        for (int row = 0; row < WIDTH; row++) {
 	            for (int col = 0; col < LENGTH; col++) {
 	                BingoSquare square = board[row][col];
-	                if (row == 2 && col == 2) {}
-	                else if (square.contains(x, y)) {
+	                //if (row == 2 && col == 2) {}
+	                if (square.contains(x, y)) {
 	                    if (square.getIsClicked()) {
 	                        square.setIsClicked(false);
 	                    } else {
@@ -94,8 +93,8 @@ public class BingoBoardHuman extends BingoBoard{
 	                }
 
 	                //the middle space is a freebie
-	                if (row == 2 && col == 2) {}
-	                else {
+	                //if (row == 2 && col == 2) {}
+	                {
 	                    int value = board[row][col].getValue();
 	                    int xCoord = (int)square.getX() + (SQUARE_SIZE / 4);
 	                    int yCoord = (int)square.getY() + (SQUARE_SIZE / 2) + (SQUARE_SIZE / 8);

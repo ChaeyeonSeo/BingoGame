@@ -46,6 +46,7 @@ public class BingoBoard extends JComponent{
     }
     
     public boolean checkWin() {
+    	int realwinner=0;
         int winningNumber = 5;
         int count;
 
@@ -58,7 +59,11 @@ public class BingoBoard extends JComponent{
                     count++;                
                 }
                 if (count == winningNumber) {
-                    return true;             
+                    //return true;
+                	realwinner++;
+                }
+                if(count==winningNumber&&realwinner==5) {
+                	return true;
                 }
             }
             this.removeIsWinnerMark();
@@ -73,7 +78,11 @@ public class BingoBoard extends JComponent{
                     count++;                
                 }
                 if (count == winningNumber) {
-                    return true;             
+                    //return true;
+                	realwinner++;
+                }
+                if(count==winningNumber&&realwinner==5) {
+                	return true;
                 }
             }
             this.removeIsWinnerMark();
@@ -88,7 +97,11 @@ public class BingoBoard extends JComponent{
                 count++;            
             }
             if (count == winningNumber) {
-                return true;
+                realwinner++;
+            	//return true;
+            }
+            if(count==winningNumber&&realwinner==5) {
+            	return true;
             }
         }        
         this.removeIsWinnerMark();
@@ -102,8 +115,12 @@ public class BingoBoard extends JComponent{
                 count++;
             }
             if (count == winningNumber) {
-                return true;
-                }
+                realwinner++;
+            	//return true;
+            }
+            if(count==winningNumber&&realwinner==5) {
+            	return true;
+            }
         }
         this.removeIsWinnerMark();
         return false;
