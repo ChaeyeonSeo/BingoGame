@@ -34,22 +34,6 @@ public class BingoBoardHuman extends BingoBoard{
 	        repaint();
 	    }
 
-	
-	 /**
-     * Creates the BingoSquare objects onto the grid and assigns them a value 
-     */
-	 
-	 public void isCalled() {        
-	        for (int x : BingoNumbers.numbers) {
-	            for (int row = 0; row < WIDTH; row++) {
-	                for (int col = 0; col < LENGTH; col++) {
-	                    if (x == board[row][col].getValue()) {
-	                        board[row][col].setStatus(true);
-	                    }
-	                }
-	            }
-	        }
-	    }
 
 	    /**
 	     * Draws the grid
@@ -84,25 +68,18 @@ public class BingoBoardHuman extends BingoBoard{
 	                    g2.draw(square);
 	                }
 	                
-	                //highlights the square if it is part of the winning sequence
-	                if (square.getIsWinner()) {
-	                    g2.setColor(Color.GREEN);
-	                    g2.fill(square);
-	                    g2.setColor(Color.BLACK);
-	                    g2.draw(square);
-	                }
 
 	                //the middle space is a freebie
 	                //if (row == 2 && col == 2) {}
-	                {
-	                    int value = board[row][col].getValue();
-	                    int xCoord = (int)square.getX() + (SQUARE_SIZE / 4);
-	                    int yCoord = (int)square.getY() + (SQUARE_SIZE / 2) + (SQUARE_SIZE / 8);
-	                    if (value < 10)
-	                        g2.drawString(" " + value + "", xCoord, yCoord);
-	                    else
-	                        g2.drawString(value + "", xCoord, yCoord);
-	                }
+	                
+	                 int value = board[row][col].getValue();
+	                 int xCoord = (int)square.getX() + (SQUARE_SIZE / 4);
+	                 int yCoord = (int)square.getY() + (SQUARE_SIZE / 2) + (SQUARE_SIZE / 8);
+	                 if (value < 10)
+	                     g2.drawString(" " + value + "", xCoord, yCoord);
+	                 else
+	                     g2.drawString(value + "", xCoord, yCoord);
+	               
 
 	                //prints the letters B I N G O above the board
 	                if (row == 0) {
@@ -111,14 +88,6 @@ public class BingoBoardHuman extends BingoBoard{
 	                    g2.setFont(font);
 	                }
 
-	                //writes "Human" below the board
-	                if (row == board.length - 1 && col == 1) {
-	                    g2.setFont(font2);
-	                    g2.setColor(Color.LIGHT_GRAY);
-	                    g2.drawString("Human", (int)square.getX() + SQUARE_SIZE / 4 - 5, (int)square.getY() + SQUARE_SIZE + ((SQUARE_SIZE / 3) * 2));
-	                    g2.setFont(font);
-	                    g2.setColor(Color.BLACK);
-	                }
 	            }
 	        }
 
@@ -126,6 +95,4 @@ public class BingoBoardHuman extends BingoBoard{
 	        g2.setColor(Color.RED);
 	        g2.drawString(winnerMessage, 50, 190);
 	    }
-   
-    
 }
