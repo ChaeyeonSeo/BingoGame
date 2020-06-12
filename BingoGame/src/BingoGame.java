@@ -5,7 +5,6 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import javax.swing.JToolTip;
-import javax.swing.JOptionPane;
 
 import java.awt.Container;
 
@@ -20,6 +19,7 @@ public class BingoGame extends JFrame{
     public static final int LENGTH = 700;
     
     private JPanel panel;
+    
     private JButton reset;
     private JButton bingo;
     private JButton nextNum;
@@ -31,18 +31,17 @@ public class BingoGame extends JFrame{
     //private BingoNumbers bingoNumbers;
     private BingoBoard dummyGrid;
     private BingoBoardHuman userGrid;
-    //private ClientFrame bingoChat;
+    //private BingoBoardSide sideGrid;
     
     private MouseListener mouseListener;
     private ActionListener timer;
     private ActionListener buttonListener;
     private final int DELAY;
     private boolean startGame=false;
-    public boolean winner=false;
+    private boolean winner=false;
     
     public BingoGame() {
        setSize(WIDTH, LENGTH);
-       setLocationRelativeTo(null);
          
          panel=new JPanel();
          
@@ -74,15 +73,11 @@ public class BingoGame extends JFrame{
            start.addActionListener(buttonListener);
            stop.addActionListener(buttonListener);
            
+           
            layout=this.getContentPane();
            layout.add(panel,"South");
-           //layout.add(bingoChat,"East");
            setVisible(true);
            
-           /*ImageIcon icon=new ImageIcon("src/images.jpg");
-           JLabel label=new JLabel(icon);
-           getContentPane().add(label);
-           setVisible(true);*/
            
            mouseListener=new MouseClickListener();
            timer=new MyTimer();
@@ -91,13 +86,11 @@ public class BingoGame extends JFrame{
            t.start();
            
            userGrid=new BingoBoardHuman();
-           //bingoNumbers=new BingoNumbers();
+           
            
            add(userGrid);
            setVisible(true);
-
-           //add(bingoNumbers);
-           //setVisible(true);
+           setVisible(true);
            
            userGrid.addMouseListener(mouseListener);
            setVisible(true);
@@ -106,12 +99,9 @@ public class BingoGame extends JFrame{
     
     class MyTimer implements ActionListener{
        public void actionPerformed(ActionEvent event) {
-          if (startGame && !winner) {//��ó������
-             //bingoNumbers.generateNumber();
-             //userGrid.isCalled();
-             
+          if (startGame && !winner) {
              userGrid.setWinnerMessage("");
-            // bingoNumbers.repaint();
+           
           }
        }
     }
@@ -130,14 +120,6 @@ public class BingoGame extends JFrame{
     }
        
     class ButtonListener implements ActionListener{
-        public void TellWinner() {
-        	if(winner) {
-        		JOptionPane.showMessageDialog(null, "You're a winner!!!");
-        	}
-        	else {
-        		JOptionPane.showMessageDialog(null, "You're a loser,,,");
-        	} 	
-        }
        public void actionPerformed(ActionEvent event) {
           Object source=event.getSource();
           if(source==reset) { //resets the board and the bingo number callings
@@ -148,9 +130,8 @@ public class BingoGame extends JFrame{
           else if(source==bingo) { //checks if the human grid has won
              if(!winner) {
                 if(userGrid.checkWin()) {
-                   userGrid.setWinnerMessage(" WINNER: You !");
+                   userGrid.setWinnerMessage("WINNER: You");
                    winner=true;
-                   TellWinner();
                 }
                 else {
                    userGrid.setWinnerMessage("Sorry, you haven't gotten bingo.");
@@ -162,7 +143,8 @@ public class BingoGame extends JFrame{
              if(!winner) {
                // bingoNumbers.generateNumber();
                 userGrid.setWinnerMessage("");
-                //userGrid.isCalled();                
+                //userGrid.isCalled();
+                
              }
           }
           else if(source==start) {//starts the game
@@ -172,10 +154,12 @@ public class BingoGame extends JFrame{
              startGame=false;
           }
           
+          
           userGrid.repaint();
-          //bingoNumbers.repaint();
           layout.repaint();
           
        }
     }
+    
+
 }

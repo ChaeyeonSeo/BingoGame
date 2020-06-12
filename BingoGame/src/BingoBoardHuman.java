@@ -1,7 +1,9 @@
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import java.awt.RenderingHints;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Font;
 import java.util.ArrayList;
 import java.awt.Color;
@@ -86,15 +88,20 @@ public class BingoBoardHuman extends BingoBoard{
 	                    g2.setFont(font2);
 	                    g2.drawString(BINGO[col], (int)square.getX() + (SQUARE_SIZE / 6), (int)square.getY() - (SQUARE_SIZE / 4) );
 	                    g2.setFont(font);
+	                    
+	                    
 	                }
 
 	            }
+	            
 	        }
+	        
+	        ImageIcon icon=new ImageIcon("src/images.jpg");
+            Image img=icon.getImage();
+            g2.drawImage(img,300,10,this);
 
 	        //prints message if grid has won
 	        g2.setColor(Color.RED);
 	        g2.drawString(winnerMessage, 50, 190);
 	    }
-   
-    
 }
