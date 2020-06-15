@@ -75,7 +75,7 @@ public class TcpChatServer {
 	public static void main(String[] args) { 
 		TcpChatServerManager tcsm = new TcpChatServerManager();
 		try {
-			ServerSocket serverSocket = new ServerSocket(6000);
+			ServerSocket serverSocket = new ServerSocket(5000);
 			while (true) {
 				Socket socket = serverSocket.accept();
 				System.out.println(socket.getRemoteSocketAddress() + " : Connected");
