@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.awt.Color;
 
 public class BingoBoard extends JComponent{
-	protected BingoSquare[][] board;
+    protected BingoSquare[][] board;
     protected ArrayList<Integer> bingoBoardWords;
     public static final String[] BINGO = {"B", " I", "N", "G", "O"};
     protected final int SQUARE_SIZE = 60;
@@ -50,7 +50,6 @@ public class BingoBoard extends JComponent{
         int winningNumber = 5;
         int count;
 
-        //checks the rows
         for (int row = 0; row < board.length; row++) {
             count = 0;
             for (int col = 0; col < board[0].length; col++) {
@@ -68,7 +67,6 @@ public class BingoBoard extends JComponent{
             this.removeIsWinnerMark();
         }
         
-        //checks the columns
         for (int col = 0; col < board[0].length; col++) {
             count = 0;
             for (int row = 0; row < board.length; row++) {
@@ -86,7 +84,7 @@ public class BingoBoard extends JComponent{
             this.removeIsWinnerMark();
         }
         
-        //check diagonal from top-left to bottom-right
+
         count = 0;
         for (int index = 0; index < board.length; index++) {
             BingoSquare square = board[index][index];
@@ -104,7 +102,6 @@ public class BingoBoard extends JComponent{
         }        
         this.removeIsWinnerMark();
 
-        //check diagonal from bottom-right to top-left
         count = 0;
         for (int index = board.length - 1; index >= 0; index--) {
             BingoSquare square = board[index][(board.length - 1) - index];
@@ -114,7 +111,6 @@ public class BingoBoard extends JComponent{
             }
             if (count == winningNumber) {
                 realwinner++;
-            	//return true;
             }
             if(count==winningNumber&&realwinner==5) {
             	return true;
