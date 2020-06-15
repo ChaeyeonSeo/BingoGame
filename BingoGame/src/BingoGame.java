@@ -28,12 +28,10 @@ public class BingoGame extends JFrame{
     private JButton stop;
     private Container layout;
     private Container boxLayout;
-    
-    //private BingoNumbers bingoNumbers;
+
     private BingoBoard dummyGrid;
     private BingoBoardHuman userGrid;
-    //private BingoBoardSide sideGrid;
-    
+
     private MouseListener mouseListener;
     private ActionListener timer;
     private ActionListener buttonListener;
@@ -48,22 +46,19 @@ public class BingoGame extends JFrame{
 
          
          panel=new JPanel();
-         
-         //JButtons
+
          reset=new JButton("Reset");
          bingo=new JButton("Bingo!");
          nextNum=new JButton("Call Next Number");
          start=new JButton("Start");
          stop=new JButton("Stop");
-         
-         //add JButtons to the panel
+
          panel.add(start);
          panel.add(stop);
          panel.add(reset);
          panel.add(bingo);
          panel.add(nextNum);
-         
-         //creates tooltips for buttons
+
          reset.setToolTipText("Reset the game");
          bingo.setToolTipText("I have bingo!");
          nextNum.setToolTipText("Call next number");
@@ -136,12 +131,11 @@ public class BingoGame extends JFrame{
     
        public void actionPerformed(ActionEvent event) {
           Object source=event.getSource();
-          if(source==reset) { //resets the board and the bingo number callings
+          if(source==reset) {
              userGrid.initializeBoard();
-             //bingoNumbers.numbers.clear();
              winner=false;
           }
-          else if(source==bingo) { //checks if the human grid has won
+          else if(source==bingo) {
              if(!winner) {
                 if(userGrid.checkWin()) {
                    userGrid.setWinnerMessage("WINNER: You");
@@ -153,15 +147,12 @@ public class BingoGame extends JFrame{
                 
              }
           }
-          else if(source==nextNum) {//calls the next bingo number and checks for winner
+          else if(source==nextNum) {
              if(!winner) {
-               // bingoNumbers.generateNumber();
                 userGrid.setWinnerMessage("");
-                //userGrid.isCalled();
-                
              }
           }
-          else if(source==start) {//starts the game
+          else if(source==start) {
              startGame=true;
           }
           else if(source==stop) {
