@@ -3,9 +3,9 @@ import java.util.Random;
 
 public class BingoSquare extends Rectangle{
 	private int value;
-	private boolean status; //true if the value is called by the user
-	private boolean isClicked; //true if the user clicked the square
-	private boolean isWinner; //this square is part of the winning sequence
+	private boolean status;
+	private boolean isClicked;
+	private boolean isWinner;
 	private static final int RANGE = 15;
 	private Random generator = new Random();
 	
