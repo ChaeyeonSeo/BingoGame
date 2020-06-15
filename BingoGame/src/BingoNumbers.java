@@ -37,9 +37,8 @@ public class BingoNumbers extends JComponent{
      * Displays the numbers
      * @param g the graphics object
      */
-    /*public void paintComponent(Graphics g) {
+    public void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
-
         //font anti-aliasing
         g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         
@@ -47,7 +46,6 @@ public class BingoNumbers extends JComponent{
         int bigFont = 80;
         Font font = new Font("SansSerif", Font.PLAIN, fontSize);
         g2.setFont(font);
-
         String call = "Calling: ";
         g2.drawString(call, BingoGame.WIDTH / 2 - 85, 70);
         if (!numbers.isEmpty()) {
@@ -67,7 +65,7 @@ public class BingoNumbers extends JComponent{
                 g2.drawString("O-" + number, xCoord, yCoord);
             }
         }
-    }*/
+    }
 
 
 }

@@ -16,60 +16,51 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField; 
 
 public class ClientFrame extends JFrame{ 
-	//ììœ ë¡­ê²Œ ì‚¬ìš©í•˜ë ¤ë©´ ì—¬ê¸°ì— í•„ë“œë¡œ ì„ ì–¸í•´ì•¼ í•œë‹¤ 
-	//ì±„íŒ…ì°½ í”„ë ˆì„ì„ êµ¬ì„±í•˜ëŠ” ì»´í¬ë„ŒíŠ¸ 
-	//textarea í•œì¤„ ì´ìƒì˜ ë¬¸ì ì…ë ¥ ë³´ì—¬ì£¼ê¸° 
-	private JTextArea textarea; 
-	private JTextField sendMsgTf; 
-	private JScrollPane scrollPane; 
-	
-	//ì„œë²„ì™€ì˜ í†µì‹ ì„ ìœ„í•œ ì†Œì¼“ 
-	private Socket socket;
-	private BufferedWriter bw; 
-	
-	public static ArrayList <Integer> numbers = new ArrayList<Integer>(); 
-	
-	public ClientFrame() { 
-		textarea = new JTextArea(); 
-		sendMsgTf = new JTextField(); 
-		textarea.setEditable(false);
-		//ì“°ê¸°ë¥¼ ê¸ˆì§€í•¨ edit í•  ìˆ˜ ì—†ëŠ” ìƒíƒœ 
-		scrollPane = new JScrollPane(textarea); 
-		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED); 
-		//As needed ì¦‰ í•„ìš”ì—ì˜í•´ì„œ ë‚´ìš©ì´ ë§ì•„ì§€ë©´ ìŠ¤í¬ë¡¤ ë°”ê°€ ìƒê¸´ë‹¤ 
-		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); 
-		//ê°€ë¡œ ìŠ¤í¬ë¡¤ì€ ì•ˆë§Œë“ ë‹¤ 
-		setSize(400, 400); 
-		setLocation(730, 300);
-		setAlwaysOnTop(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
-		
-		setTitle("chatting"); 
-		
-		sendMsgTf.addKeyListener(new MsgSendListener()); 
-		//í…ìŠ¤íŠ¸ í•„ë“œì— í‚¤ ë¦¬ìŠ¤ë„ˆë¥¼ ë“±ë¡ 
-		//í…ìŠ¤íŠ¸ í•„ë“œë¥¼ ì§€ì¼œë³´ê³  ìˆë‹¤ê°€ íŠ¹ì • ìƒí™©ì´ ì˜¤ë©´
-		//ì´ë²¤íŠ¸ ë¦¬ìŠ¤ë„ˆì— ì •ì˜ëœ ë‚´ìš© ì‹¤í–‰
-		add(scrollPane,BorderLayout.CENTER);
-		//í”„ë ˆì„ì— ë¶™ì´ê¸°
-		add(textarea,BorderLayout.CENTER);
-		//í”„ë ˆì„ì— ë¶™ì´ê¸° 
-		add(sendMsgTf,BorderLayout.SOUTH);//í”„ë ˆì„ì— ë¶™ì´ê¸°
-		setVisible(true); 
-	} 
-	//ì†Œì¼“ ì„¤ì •ì„ ìœ„í•œ ì„¸í„° 
-	//ì´ì œ í”„ë ˆì„ë„ ì†Œì¼“ì˜ ì •ë³´ë¥¼ ê°€ì§€ê²Œ ë˜ì—ˆë‹¤ 
-	public void setSocket(Socket socket) { 
-		this.socket = socket; 
-		try { 
-			OutputStream out = socket.getOutputStream(); 
-			bw = new BufferedWriter(new OutputStreamWriter(out));
-		} catch (Exception e) { 
-			e.printStackTrace(); 
-		}
-	} 
-	
-	public boolean isCalled(int value)
+   //ÀÚÀ¯·Ó°Ô »ç¿ëÇÏ·Á¸é ¿©±â¿¡ ÇÊµå·Î ¼±¾ğÇØ¾ß ÇÑ´Ù 
+   //Ã¤ÆÃÃ¢ ÇÁ·¹ÀÓÀ» ±¸¼ºÇÏ´Â ÄÄÆ÷³ÍÆ® 
+   //textarea ÇÑÁÙ ÀÌ»óÀÇ ¹®ÀÚ ÀÔ·Â º¸¿©ÁÖ±â 
+   private JTextArea textarea; 
+   private JTextField sendMsgTf; 
+   private JScrollPane scrollPane;
+   
+   //¼­¹ö¿ÍÀÇ Åë½ÅÀ» À§ÇÑ ¼ÒÄÏ 
+   private Socket socket;
+   private BufferedWriter bw; 
+   
+   public static ArrayList <Integer> numbers = new ArrayList<Integer>(); 
+   
+   public ClientFrame() { 
+      textarea = new JTextArea(); 
+      sendMsgTf = new JTextField(); 
+      textarea.setEditable(false);
+      scrollPane = new JScrollPane(textarea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
+      setSize(400, 600); 
+      setLocation(750, 100);
+      setAlwaysOnTop(true);
+      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+      
+      setTitle("chatting"); 
+      
+      sendMsgTf.addKeyListener(new MsgSendListener()); 
+      add(scrollPane,BorderLayout.EAST);
+      add(textarea,BorderLayout.CENTER);
+      add(sendMsgTf,BorderLayout.SOUTH);
+      setVisible(true); 
+   } 
+   //¼ÒÄÏ ¼³Á¤À» À§ÇÑ ¼¼ÅÍ 
+   //ÀÌÁ¦ ÇÁ·¹ÀÓµµ ¼ÒÄÏÀÇ Á¤º¸¸¦ °¡Áö°Ô µÇ¾ú´Ù 
+   public void setSocket(Socket socket) { 
+      this.socket = socket; 
+      try { 
+         OutputStream out = socket.getOutputStream(); 
+         bw = new BufferedWriter(new OutputStreamWriter(out));
+      } catch (Exception e) { 
+         e.printStackTrace(); 
+      }
+   } 
+   
+   public boolean isCalled(int value)
     {
         for (int x : numbers) {
             if (value == (int) x)
@@ -77,92 +68,92 @@ public class ClientFrame extends JFrame{
         }
         return false;
     }
-	
-	//ë‚´ë¶€ í´ë˜ìŠ¤ë¡œ ì´ë²¤íŠ¸ ë¦¬ìŠ¤ë„ˆ ë§Œë“¤ê¸°
-	class MsgSendListener implements KeyListener { 
-		@Override public void keyTyped(KeyEvent e) { 
-		
-		}@Override public void keyPressed(KeyEvent e) { 
-			
-		}@Override public void keyReleased(KeyEvent e) {
-			//í‚¤ê°€ ëˆŒë ¸ë‹¤ê°€ ë–¼ì–´ì¡Œì„ë•Œ 
-			//ì—”í„°í‚¤ê°€ ëˆŒë ¸ë‹¤ê°€ ë–¼ì–´ì§€ë©´ í…ìŠ¤íŠ¸ í•„ë“œì— ìˆëŠ” ë‚´ìš©ì´ í…ìŠ¤íŠ¸ ì—ì–´ë¦¬ì–´ì— ë‚˜íƒ€ë‚˜ê²Œ 
-			if (e.getKeyCode()==KeyEvent.VK_ENTER) {
-				//ê°ê°ì˜ í‚¤ë“¤ì´ ê°€ì§€ê³  ìˆëŠ” ì½”ë“œ ê°’ì´ ë‚˜íƒ€ë‚œë‹¤ 
-				//VK_ENTER = ìƒìˆ˜ , ì—”í„° í‚¤ì— ëŒ€í•œ í‚¤ê°’ì„ ì˜ë¯¸í•œë‹¤ 
-				String msg = sendMsgTf.getText(); 
-				System.out.println(msg);
-				if(!isCalled(Integer.parseInt(msg))) {
-					textarea.append("[ ë‚˜ ]: "+msg+"\n"); 
-					numbers.add(Integer.parseInt(msg));
-					sendMsgTf.setText(""); 
-					try { 
-						bw.write(msg+"\n"); 
-						bw.flush(); 
-					} catch (IOException e1) { 
-						// TODO Auto-generated catch block 
-						e1.printStackTrace(); 
-					}
-					//í•œë¬¸ì¥ì´ ëë‚¬ë‹¤ëŠ” ê²ƒì„ ì•Œë¦¬ê¸° ìœ„í•´ì„œ bufferedWriterì— "\n"ì„ ë¶™ì¸ë‹¤
-				}
-				else {
-					textarea.append("ì´ë¯¸ ë¶ˆë¦° ìˆ«ìì…ë‹ˆë‹¤. ë‹¤ì‹œ ì…ë ¥í•˜ì„¸ìš”.\n");
-				}
-			}
-		} 
-	} 
-	//ë‚´ë¶€ í´ë˜ìŠ¤ë¡œ ìˆ˜ì‹  ìŠ¤ë ˆë“œ ì‘ì„± 
-	class TcpClientReceiveThread implements Runnable { 
-		private Socket socket;
-		public TcpClientReceiveThread(Socket socket) { 
-			this.socket = socket; 
-		} 
-		@Override public void run() { 
-			//ì„œë²„ë¡œë¶€í„° ì˜¤ëŠ” ë©”ì„¸ì§€ë¥¼ ì½ì–´ì„œ 
-			//í…ìŠ¤íŠ¸ ì—ì–´ë¦¬ì–´ì— ì¶”ê°€í•˜ê¸° 
-			try { 
-				BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-				while (true) { 
-					String msg = br.readLine();
-					//ë©”ì„¸ì§€ í•œì¤„ ì½ì–´ì˜¤ê¸°
-					textarea.append("[ìƒëŒ€ë°©]" + msg + "\n");
-					numbers.add(Integer.parseInt(msg));
+   
+   //³»ºÎ Å¬·¡½º·Î ÀÌº¥Æ® ¸®½º³Ê ¸¸µé±â
+   class MsgSendListener implements KeyListener { 
+      @Override public void keyTyped(KeyEvent e) { 
+      
+      }@Override public void keyPressed(KeyEvent e) { 
+         
+      }@Override public void keyReleased(KeyEvent e) {
+         //Å°°¡ ´­·È´Ù°¡ ¶¼¾îÁ³À»¶§ 
+         //¿£ÅÍÅ°°¡ ´­·È´Ù°¡ ¶¼¾îÁö¸é ÅØ½ºÆ® ÇÊµå¿¡ ÀÖ´Â ³»¿ëÀÌ ÅØ½ºÆ® ¿¡¾î¸®¾î¿¡ ³ªÅ¸³ª°Ô 
+         if (e.getKeyCode()==KeyEvent.VK_ENTER) {
+            //°¢°¢ÀÇ Å°µéÀÌ °¡Áö°í ÀÖ´Â ÄÚµå °ªÀÌ ³ªÅ¸³­´Ù 
+            //VK_ENTER = »ó¼ö , ¿£ÅÍ Å°¿¡ ´ëÇÑ Å°°ªÀ» ÀÇ¹ÌÇÑ´Ù 
+            String msg = sendMsgTf.getText(); 
+            System.out.println(msg);
+            if(!isCalled(Integer.parseInt(msg))) {
+               textarea.append("[ ³ª ]: "+msg+"\n"); 
+               numbers.add(Integer.parseInt(msg));
+               sendMsgTf.setText(""); 
+               try { 
+                  bw.write(msg+"\n"); 
+                  bw.flush(); 
+               } catch (IOException e1) { 
+                  // TODO Auto-generated catch block 
+                  e1.printStackTrace(); 
+               }
+               //ÇÑ¹®ÀåÀÌ ³¡³µ´Ù´Â °ÍÀ» ¾Ë¸®±â À§ÇØ¼­ bufferedWriter¿¡ "\n"À» ºÙÀÎ´Ù
+            }
+            else {
+               textarea.append("ÀÌ¹Ì ºÒ¸° ¼ıÀÚÀÔ´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇÏ¼¼¿ä.\n");
+            }
+         }
+      } 
+   } 
+   //³»ºÎ Å¬·¡½º·Î ¼ö½Å ½º·¹µå ÀÛ¼º 
+   class TcpClientReceiveThread implements Runnable { 
+      private Socket socket;
+      public TcpClientReceiveThread(Socket socket) { 
+         this.socket = socket; 
+      } 
+      @Override public void run() { 
+         //¼­¹ö·ÎºÎÅÍ ¿À´Â ¸Ş¼¼Áö¸¦ ÀĞ¾î¼­ 
+         //ÅØ½ºÆ® ¿¡¾î¸®¾î¿¡ Ãß°¡ÇÏ±â 
+         try { 
+            BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            while (true) { 
+               String msg = br.readLine();
+               //¸Ş¼¼Áö ÇÑÁÙ ÀĞ¾î¿À±â
+               textarea.append("[»ó´ë¹æ]" + msg + "\n");
+               numbers.add(Integer.parseInt(msg));
 
-					for(int i : numbers) {
-						System.out.println((int)i);
-					}
-				} 
-			} catch (Exception e) { 
-				textarea.append("ì—°ê²°ì´ ì¢…ë£Œë˜ì—ˆìŠµë‹ˆë‹¤."); 
-				//System.out.println("ì—°ê²°ì´ ì¢…ë£Œë˜ì—ˆìŠµë‹ˆë‹¤."); 
-			} finally { 
-				try { 
-					if (socket!=null&&!socket.isClosed()) { 
-						socket.close();//ë‹¤ ì“´ ì†Œì¼“ ë‹«ê¸° 
-					} 
-				} catch (Exception e2) { 
-					
-				} 
-			} 
-		} 
-	} 
-	public static void main(String[] args) { 
-		try {			
-			Runplease run = new Runplease();
-			
-			//ì„œë²„ ì•„ì´í”¼ , í¬íŠ¸ë²ˆí˜¸ -> ì†Œì¼“ ìƒì„± -> ì—°ê²° ìš”ì²­
-			Socket socket = new Socket("172.16.101.5", 5000); 
-			//ì†Œì¼“ ê°ì²´ ìƒì„±
-			ClientFrame cf = new ClientFrame(); 
-			cf.setSocket(socket);
-			//ë©”ì¸ì—ì„œ í”„ë ˆì„ ìƒì„±
-			TcpClientReceiveThread th1 = cf.new TcpClientReceiveThread(socket); 
-			//TcpClientReceiveThreadê°€ ë‚´ë¶€ í´ë˜ìŠ¤ë¡œ ì„ ì–¸ë˜ì–´ ìˆê¸° ë•Œë¬¸ì—
-			//cfë¡œ ì ‘ê·¼í•´ì„œ socketì„ ì „ë‹¬í•œë‹¤
-			new Thread(th1).start();
-				
-		} catch (Exception e) { 
-			e.printStackTrace(); 
-		} 
-	} 
+               for(int i : numbers) {
+                  System.out.println((int)i);
+               }
+            } 
+         } catch (Exception e) { 
+            textarea.append("¿¬°áÀÌ Á¾·áµÇ¾ú½À´Ï´Ù."); 
+            //System.out.println("¿¬°áÀÌ Á¾·áµÇ¾ú½À´Ï´Ù."); 
+         } finally { 
+            try { 
+               if (socket!=null&&!socket.isClosed()) { 
+                  socket.close();//´Ù ¾´ ¼ÒÄÏ ´İ±â 
+               } 
+            } catch (Exception e2) { 
+               
+            } 
+         } 
+      } 
+   } 
+   public static void main(String[] args) { 
+      try {         
+         Runplease run = new Runplease();
+         
+         //¼­¹ö ¾ÆÀÌÇÇ , Æ÷Æ®¹øÈ£ -> ¼ÒÄÏ »ı¼º -> ¿¬°á ¿äÃ»
+         Socket socket = new Socket("192.168.0.7", 5000); 
+         //¼ÒÄÏ °´Ã¼ »ı¼º
+         ClientFrame cf = new ClientFrame(); 
+         cf.setSocket(socket);
+         //¸ŞÀÎ¿¡¼­ ÇÁ·¹ÀÓ »ı¼º
+         TcpClientReceiveThread th1 = cf.new TcpClientReceiveThread(socket); 
+         //TcpClientReceiveThread°¡ ³»ºÎ Å¬·¡½º·Î ¼±¾ğµÇ¾î ÀÖ±â ¶§¹®¿¡
+         //cf·Î Á¢±ÙÇØ¼­ socketÀ» Àü´ŞÇÑ´Ù
+         new Thread(th1).start();
+            
+      } catch (Exception e) { 
+         e.printStackTrace(); 
+      } 
+   } 
 }
