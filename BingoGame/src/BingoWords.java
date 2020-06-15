@@ -1,10 +1,3 @@
-
-/**
- * Write a description of class BingoNumbers here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 import java.util.Random;
 import java.util.ArrayList;
 import javax.swing.*;
@@ -14,18 +7,6 @@ public class BingoWords extends JComponent
 {
     public static ArrayList <String> words = new ArrayList<String>();
 
-    //     /**
-    //      * Constructs BingoNumbers while generating a number
-    //      */
-    //     public BingoNumbers() {
-    //         generateNumber();
-    //     }
-
-    /**
-     * Checks if <code>value</code> already exists in the ArrayList
-     * @param value the value to check
-     * @return  true if a duplicate is found
-     */
     public boolean isFound(String value)
     {
         for (String x : words) {
@@ -35,21 +16,13 @@ public class BingoWords extends JComponent
         return false;
     }
 
-    /**
-     * Creates a unique number from 1-75 and puts it into the ArrayList
-     */
     public void generateNumber() {
         
     }
 
-    /**
-     * Displays the numbers
-     * @param g the graphics object
-     */
     public void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
 
-        //font anti-aliasing
         g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         
         int fontSize = 45;
