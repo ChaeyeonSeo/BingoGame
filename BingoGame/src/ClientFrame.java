@@ -16,14 +16,11 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField; 
 
 public class ClientFrame extends JFrame{ 
-   //자유롭게 사용하려면 여기에 필드로 선언해야 한다 
-   //채팅창 프레임을 구성하는 컴포넌트 
-   //textarea 한줄 이상의 문자 입력 보여주기 
+
    private JTextArea textarea; 
    private JTextField sendMsgTf; 
    private JScrollPane scrollPane;
    
-   //서버와의 통신을 위한 소켓 
    private Socket socket;
    private BufferedWriter bw; 
    
@@ -48,8 +45,7 @@ public class ClientFrame extends JFrame{
       add(sendMsgTf,BorderLayout.SOUTH);
       setVisible(true); 
    } 
-   //소켓 설정을 위한 세터 
-   //이제 프레임도 소켓의 정보를 가지게 되었다 
+
    public void setSocket(Socket socket) { 
       this.socket = socket; 
       try { 
@@ -69,22 +65,20 @@ public class ClientFrame extends JFrame{
         return false;
     }
    
-   //내부 클래스로 이벤트 리스너 만들기
+
    class MsgSendListener implements KeyListener { 
       @Override public void keyTyped(KeyEvent e) { 
       
       }@Override public void keyPressed(KeyEvent e) { 
          
       }@Override public void keyReleased(KeyEvent e) {
-         //키가 눌렸다가 떼어졌을때 
-         //엔터키가 눌렸다가 떼어지면 텍스트 필드에 있는 내용이 텍스트 에어리어에 나타나게 
+
          if (e.getKeyCode()==KeyEvent.VK_ENTER) {
-            //각각의 키들이 가지고 있는 코드 값이 나타난다 
-            //VK_ENTER = 상수 , 엔터 키에 대한 키값을 의미한다 
+
             String msg = sendMsgTf.getText(); 
             System.out.println(msg);
             if(!isCalled(Integer.parseInt(msg))) {
-               textarea.append("[ 나 ]: "+msg+"\n"); 
+               textarea.append("[ me ]: "+msg+"\n"); 
                numbers.add(Integer.parseInt(msg));
                sendMsgTf.setText(""); 
                try { 
@@ -94,29 +88,26 @@ public class ClientFrame extends JFrame{
                   // TODO Auto-generated catch block 
                   e1.printStackTrace(); 
                }
-               //한문장이 끝났다는 것을 알리기 위해서 bufferedWriter에 "\n"을 붙인다
             }
             else {
-               textarea.append("이미 불린 숫자입니다. 다시 입력하세요.\n");
+               textarea.append("This number is already called. Please enter again.\n");
             }
          }
       } 
    } 
-   //내부 클래스로 수신 스레드 작성 
+
    class TcpClientReceiveThread implements Runnable { 
       private Socket socket;
       public TcpClientReceiveThread(Socket socket) { 
          this.socket = socket; 
       } 
       @Override public void run() { 
-         //서버로부터 오는 메세지를 읽어서 
-         //텍스트 에어리어에 추가하기 
+
          try { 
             BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             while (true) { 
                String msg = br.readLine();
-               //메세지 한줄 읽어오기
-               textarea.append("[상대방]" + msg + "\n");
+               textarea.append("[ other ]" + msg + "\n");
                numbers.add(Integer.parseInt(msg));
 
                for(int i : numbers) {
@@ -124,12 +115,11 @@ public class ClientFrame extends JFrame{
                }
             } 
          } catch (Exception e) { 
-            textarea.append("연결이 종료되었습니다."); 
-            //System.out.println("연결이 종료되었습니다."); 
+            textarea.append("Connection End."); 
          } finally { 
             try { 
                if (socket!=null&&!socket.isClosed()) { 
-                  socket.close();//다 쓴 소켓 닫기 
+                  socket.close();
                } 
             } catch (Exception e2) { 
                
@@ -141,15 +131,11 @@ public class ClientFrame extends JFrame{
       try {         
          Runplease run = new Runplease();
          
-         //서버 아이피 , 포트번호 -> 소켓 생성 -> 연결 요청
-         Socket socket = new Socket("192.168.0.7", 5000); 
-         //소켓 객체 생성
+         //use server IP
+         Socket socket = new Socket("localhost", 5000); 
          ClientFrame cf = new ClientFrame(); 
          cf.setSocket(socket);
-         //메인에서 프레임 생성
          TcpClientReceiveThread th1 = cf.new TcpClientReceiveThread(socket); 
-         //TcpClientReceiveThread가 내부 클래스로 선언되어 있기 때문에
-         //cf로 접근해서 socket을 전달한다
          new Thread(th1).start();
             
       } catch (Exception e) { 
