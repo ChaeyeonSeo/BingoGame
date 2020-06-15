@@ -50,7 +50,6 @@ public class BingoBoard extends JComponent{
         int winningNumber = 5;
         int count;
 
-        //checks the rows
         for (int row = 0; row < board.length; row++) {
             count = 0;
             for (int col = 0; col < board[0].length; col++) {
@@ -59,7 +58,6 @@ public class BingoBoard extends JComponent{
                     count++;                
                 }
                 if (count == winningNumber) {
-                    //return true;
                 	realwinner++;
                 }
                 if(count==winningNumber&&realwinner==5) {
@@ -68,8 +66,7 @@ public class BingoBoard extends JComponent{
             }
             this.removeIsWinnerMark();
         }
-        
-        //checks the columns
+
         for (int col = 0; col < board[0].length; col++) {
             count = 0;
             for (int row = 0; row < board.length; row++) {
@@ -78,7 +75,6 @@ public class BingoBoard extends JComponent{
                     count++;                
                 }
                 if (count == winningNumber) {
-                    //return true;
                 	realwinner++;
                 }
                 if(count==winningNumber&&realwinner==5) {
@@ -87,8 +83,7 @@ public class BingoBoard extends JComponent{
             }
             this.removeIsWinnerMark();
         }
-        
-        //check diagonal from top-left to bottom-right
+
         count = 0;
         for (int index = 0; index < board.length; index++) {
             BingoSquare square = board[index][index];
@@ -98,7 +93,6 @@ public class BingoBoard extends JComponent{
             }
             if (count == winningNumber) {
                 realwinner++;
-            	//return true;
             }
             if(count==winningNumber&&realwinner==5) {
             	return true;
@@ -116,7 +110,6 @@ public class BingoBoard extends JComponent{
             }
             if (count == winningNumber) {
                 realwinner++;
-            	//return true;
             }
             if(count==winningNumber&&realwinner==5) {
             	return true;
