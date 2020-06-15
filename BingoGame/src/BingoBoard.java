@@ -59,7 +59,6 @@ public class BingoBoard extends JComponent{
                     count++;                
                 }
                 if (count == winningNumber) {
-                    //return true;
                 	realwinner++;
                 }
                 if(count==winningNumber&&realwinner==5) {
@@ -78,7 +77,6 @@ public class BingoBoard extends JComponent{
                     count++;                
                 }
                 if (count == winningNumber) {
-                    //return true;
                 	realwinner++;
                 }
                 if(count==winningNumber&&realwinner==5) {
